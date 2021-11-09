@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PS.Domain
 {
-    public class Product
+    public class Product: Concept
     {
         public static int Compteur { get; set; }
         
@@ -29,10 +29,15 @@ namespace PS.Domain
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public int ProductId
+        public int ProductId { set; get; }
+
+        public Category Category { get; set; }
+
+        public IList<Provider> Providers { get; set; }
+
+        public virtual void GetMyType()
         {
-            set;
-            get;
+            Console.WriteLine("Je suis un produit");
         }
 
         public override string ToString()
@@ -40,6 +45,11 @@ namespace PS.Domain
             return ProductId + " " + Name 
                 + " " + Price + " " + DateProd + " " + Quantity;
                 ;
+        }
+
+        public override void GetDetails()
+        {
+            Console.WriteLine(ToString());
         }
     }
 
